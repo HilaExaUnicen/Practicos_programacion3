@@ -22,9 +22,9 @@ public class NodoArbol {
 		return valor;
 	}
 
-//	public void setValor(int valor) {
-//		this.valor = valor;
-//	}
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
 
 	public NodoArbol getIzquierda() {
 		return izquierda;
