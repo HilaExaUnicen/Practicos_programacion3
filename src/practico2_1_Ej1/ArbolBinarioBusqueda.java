@@ -1,5 +1,7 @@
 package practico2_1_Ej1;
 
+import java.util.ArrayList;
+
 public class ArbolBinarioBusqueda {
 	
 	private NodoArbol raiz;
@@ -221,6 +223,44 @@ public class ArbolBinarioBusqueda {
 		if(nodo.getDerecha() != null) {
 			printInOrder(nodo.getDerecha());
 		}
+	}
+	
+	public ArrayList<Integer> getLongestBranch(){
+		if(this.raiz == null) {
+			ArrayList<Integer> listaVacia = new ArrayList<>();
+			return listaVacia;
+		}
+		else {
+			ArrayList<Integer> longestBranch = new ArrayList<>();
+			longestBranch = getLongestBranch(this.raiz);
+			return longestBranch;
+		}
+	}
+
+	private ArrayList<Integer> getLongestBranch(NodoArbol nodo) {
+		ArrayList<Integer> longestBranch, leftBranch, rightBranch;
+		longestBranch = new ArrayList<>();	
+		leftBranch = new ArrayList<>();
+		rightBranch = new ArrayList<>();
+		
+		if(nodo.getIzquierda() != null) {
+			leftBranch = getLongestBranch(nodo.getIzquierda());
+		}
+		
+		if(nodo.getDerecha() != null) {
+			rightBranch = getLongestBranch(nodo.getDerecha());
+		}
+		
+		if(leftBranch.size() > rightBranch.size()) {
+			longestBranch.addAll(leftBranch);
+		}
+		else {
+			longestBranch.addAll(rightBranch);
+		}
+		
+		return longestBranch;
+		
+		
 	}
 
 	public boolean isEmpty() {
