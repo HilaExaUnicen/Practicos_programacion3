@@ -1,5 +1,7 @@
 package practico2_1_Ej1;
 
+import java.util.ArrayList;
+
 public class Main {
 	public static void main(String[] args) {
 		ArbolBinarioBusqueda arbol = new ArbolBinarioBusqueda();
@@ -33,6 +35,10 @@ public class Main {
 		System.out.println("");		
 		int altura = arbol.getHeight();
 		System.out.println("La altura del arbol es de " + altura);
+		
+		System.out.println("");
+		ArrayList<Integer> rama = arbol.getLongestBranch();
+		System.out.println(rama);
 	}
 
 

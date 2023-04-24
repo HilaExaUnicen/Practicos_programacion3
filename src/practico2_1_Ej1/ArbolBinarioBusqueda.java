@@ -1,6 +1,7 @@
 package practico2_1_Ej1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ArbolBinarioBusqueda {
 	
@@ -233,6 +234,7 @@ public class ArbolBinarioBusqueda {
 		else {
 			ArrayList<Integer> longestBranch = new ArrayList<>();
 			longestBranch = getLongestBranch(this.raiz);
+			Collections.reverse(longestBranch);//Revertimos la lista ya que si no se muestra de arriba a abajo por la recursion
 			return longestBranch;
 		}
 	}
@@ -243,12 +245,14 @@ public class ArbolBinarioBusqueda {
 		leftBranch = new ArrayList<>();
 		rightBranch = new ArrayList<>();
 		
-		if(nodo.getIzquierda() != null) {
+		if(nodo != null) {
 			leftBranch = getLongestBranch(nodo.getIzquierda());
+			leftBranch.add(nodo.getValor());
 		}
 		
-		if(nodo.getDerecha() != null) {
+		if(nodo != null) {
 			rightBranch = getLongestBranch(nodo.getDerecha());
+			rightBranch.add(nodo.getValor());
 		}
 		
 		if(leftBranch.size() > rightBranch.size()) {
@@ -259,8 +263,6 @@ public class ArbolBinarioBusqueda {
 		}
 		
 		return longestBranch;
-		
-		
 	}
 
 	public boolean isEmpty() {
