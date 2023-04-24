@@ -13,8 +13,8 @@ public class ArbolBinarioBusqueda {
 	}
 	
 	public void add(int valor) {
-		NodoArbol nuevoNodo = new NodoArbol(valor);
 		if(this.raiz == null) {
+			NodoArbol nuevoNodo = new NodoArbol(valor);
 			this.raiz = nuevoNodo;
 		}
 		else {
@@ -79,22 +79,23 @@ public class ArbolBinarioBusqueda {
 			return false;
 		}
 		else {
-			return delete(this.raiz, valor);
+			delete(this.raiz, valor);
+			return true;
 		}
 	}
 	
-	public boolean delete(NodoArbol nodo, int valor) {
+	public void delete(NodoArbol nodo, int valor) {
 		if(nodo != null && nodo.getValor() == valor) {
 			if(nodo.getIzquierda() == null && nodo.getDerecha() == null) {
 				nodo = null;
 			}
 			else if(nodo.getIzquierda() != null && nodo.getDerecha() == null) {
-				NodoArbol aux = nodo.getIzquierda();
-				nodo = aux;
+				nodo.setValor(nodo.getIzquierda().getValor());
+				nodo.setIzquierda(null);
 			}
 			else if(nodo.getIzquierda() == null && nodo.getDerecha()!= null) {
-				NodoArbol aux = nodo.getDerecha();
-				nodo = aux;
+				nodo.setValor(nodo.getDerecha().getValor());
+				nodo.setDerecha(nodo);
 			}
 			else {
 				//TODO CUANDO TIENE LOS DOS NODOS
@@ -103,7 +104,7 @@ public class ArbolBinarioBusqueda {
 				int nuevoValorNodo = nmiSubArbolDerecho.getValor();
 				//Borrar nodo mas izquierdo 
 				delete(nmiSubArbolDerecho, valor);
-				//Borramos el nodo a eliminar actualizando su valor
+				//Eliminamos el nodo a borrar reemplazando su valor por el de el NMI de su subarbol derecho
 				nodo.setValor(nuevoValorNodo);
 			}
 		}
@@ -113,8 +114,7 @@ public class ArbolBinarioBusqueda {
 		else {
 			delete(nodo.getIzquierda(), valor);
 		}
-		
-		return true; //Siempre devuelve true porque se supone que si entra a este metodo el valor a borrar existe en el arbol y se borra
+	
 	}
 	
 	
@@ -128,9 +128,100 @@ public class ArbolBinarioBusqueda {
 		return temp;
 	}
 	
-//	public int getHeight() {
-//		//TODO	
-//	}
+	public int getHeight(){
+	    if(this.isEmpty()){
+	        return 0;
+	    }
+	    else{
+	        NodoArbol node = this.raiz;
+	        return getHeight(node);
+	    }
+	}
+	private int getHeight(NodoArbol aNode){
+	    int heightLeft = 0;
+	    int heightRight = 0;
+	    
+	    if(aNode.getIzquierda() != null) {
+	    	heightLeft = getHeight(aNode.getIzquierda());
+	    }
+
+	    if(aNode.getDerecha() != null) {
+	    	heightRight = getHeight(aNode.getDerecha());
+	    }
+	        
+	    if(heightLeft > heightRight){
+	        return heightLeft+1;
+	    }
+	    else if(heightRight > heightLeft){
+	        return heightRight+1;
+	    }
+	    else {
+	    	return heightRight-1; //La altura es la cantidad de saltos desde el nodoRaiz hasta su hoja mas lejana
+	    }
+	}
+	
+	public void printPreOrder() {
+		if(this.raiz != null) {
+			printPreOrder(this.raiz);
+		}
+		else {
+			System.out.println("El arbol esta vacio");
+		}
+	}
+	
+	private void printPreOrder(NodoArbol nodo) {
+		
+		System.out.print(nodo.getValor() + " ");
+		
+		if(nodo.getIzquierda()!= null) {
+			printPreOrder(nodo.getIzquierda());
+		}
+		
+		if(nodo.getDerecha() != null) {
+			printPreOrder(nodo.getDerecha());
+		}
+	}
+	
+	public void printPosOrder() {
+		if(this.raiz != null) {
+			printPosOrder(this.raiz);
+		}
+		else {
+			System.out.println("El arbol esta vacio");
+		}
+	}
+	
+	private void printPosOrder(NodoArbol nodo) {
+		
+		if(nodo.getIzquierda() != null) {
+			printPosOrder(nodo.getIzquierda());
+		}
+		
+		if(nodo.getDerecha() != null) {
+			printPosOrder(nodo.getDerecha());
+		}
+		
+		System.out.print(nodo.getValor() + " ");
+	}
+	
+	public void printInOrder() {
+		if(this.raiz != null) {
+			printInOrder(this.raiz);
+		}
+		else {
+			System.out.println("El arbol esta vacio");
+		}
+	}
+
+	private void printInOrder(NodoArbol nodo) {
+		if(nodo.getIzquierda()!= null) {
+			printInOrder(nodo.getIzquierda());
+		}
+		System.out.print(nodo.getValor() + " ");
+		if(nodo.getDerecha() != null) {
+			printInOrder(nodo.getDerecha());
+		}
+	}
 
 	public boolean isEmpty() {
 		return this.raiz == null;
@@ -139,4 +230,6 @@ public class ArbolBinarioBusqueda {
 	public int getRoot() {
 		return this.raiz.getValor();
 	}
+	
+	
 }
