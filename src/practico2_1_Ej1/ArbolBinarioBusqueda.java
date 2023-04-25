@@ -265,6 +265,7 @@ public class ArbolBinarioBusqueda {
 		return longestBranch;
 	}
 	
+<<<<<<< HEAD
 	public int getMaxElem() {
 		if(this.raiz == null) {
 			return 0;
@@ -320,6 +321,31 @@ public class ArbolBinarioBusqueda {
 		}
 		
 		return elements;
+=======
+	public ArrayList<Integer> getFrontera(){
+		if(this.raiz == null) {
+			return new ArrayList<Integer>();
+		}
+		else {
+			ArrayList<Integer> frontera = new ArrayList<>();
+			frontera = getFrontera(this.raiz, frontera);
+			return frontera;
+		}
+	}
+	
+	private ArrayList<Integer> getFrontera(NodoArbol nodo, ArrayList<Integer> frontera){
+		if(nodo != null) {
+			if(nodo.getIzquierda() == null && nodo.getDerecha() == null) {
+				frontera.add(nodo.getValor());
+			}
+			else {
+				frontera = getFrontera(nodo.getIzquierda(), frontera);
+				frontera = getFrontera(nodo.getDerecha(), frontera);		
+			}
+		}
+		
+		return frontera;
+>>>>>>> c0d9ab6b481d775189b4a5e263ce5cdaf3e0ab84
 	}
 
 	public boolean isEmpty() {
