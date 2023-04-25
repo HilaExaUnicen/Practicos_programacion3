@@ -39,33 +39,26 @@ public class Main {
 		
 		System.out.println("");
 		ArrayList<Integer> rama = arbol.getLongestBranch();
-<<<<<<< HEAD
 		System.out.println("Rama mas larga del arbol: ");
 		System.out.println(rama);
-		
-		
-		
-		
-		
 		
 		System.out.println("");
 		int maxElem = arbol.getMaxElem();
 		System.out.println("El valor mas alto del arbol es: " + maxElem);
 		
 		System.out.println("");
-		ArrayList<Integer> elements = arbol.getElemAtLevel(1);
-		System.out.println("Nivel: " + elements);
-	
-=======
-		System.out.println("Rama mas larga del arbol: " + rama);
-	
-		System.out.println("");
 		ArrayList<Integer> frontera = arbol.getFrontera();
 		if(!frontera.isEmpty()) {
 			System.out.println("Frontera del arbol: " + frontera);
 		}
 		
->>>>>>> c0d9ab6b481d775189b4a5e263ce5cdaf3e0ab84
+//		System.out.println("");
+//		ArrayList<Integer> elements = arbol.getElemAtLevel(1);
+//		System.out.println("Nivel: " + elements);
+	
+	
+
+		
 	}
 
 

@@ -265,7 +265,6 @@ public class ArbolBinarioBusqueda {
 		return longestBranch;
 	}
 	
-<<<<<<< HEAD
 	public int getMaxElem() {
 		if(this.raiz == null) {
 			return 0;
@@ -321,7 +320,8 @@ public class ArbolBinarioBusqueda {
 		}
 		
 		return elements;
-=======
+	}
+	
 	public ArrayList<Integer> getFrontera(){
 		if(this.raiz == null) {
 			return new ArrayList<Integer>();
@@ -345,7 +345,6 @@ public class ArbolBinarioBusqueda {
 		}
 		
 		return frontera;
->>>>>>> c0d9ab6b481d775189b4a5e263ce5cdaf3e0ab84
 	}
 
 	public boolean isEmpty() {
