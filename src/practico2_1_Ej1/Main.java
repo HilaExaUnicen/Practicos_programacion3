@@ -32,13 +32,29 @@ public class Main {
 		System.out.println("Recorrido Pos-orden:");
 		arbol.printPosOrder();
 		
-		System.out.println("");		
+		System.out.println("");
+		System.out.println("");
 		int altura = arbol.getHeight();
 		System.out.println("La altura del arbol es de " + altura);
 		
 		System.out.println("");
 		ArrayList<Integer> rama = arbol.getLongestBranch();
+		System.out.println("Rama mas larga del arbol: ");
 		System.out.println(rama);
+		
+		
+		
+		
+		
+		
+		System.out.println("");
+		int maxElem = arbol.getMaxElem();
+		System.out.println("El valor mas alto del arbol es: " + maxElem);
+		
+		System.out.println("");
+		ArrayList<Integer> elements = arbol.getElemAtLevel(1);
+		System.out.println("Nivel: " + elements);
+	
 	}
 
 

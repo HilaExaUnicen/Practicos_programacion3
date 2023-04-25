@@ -239,7 +239,7 @@ public class ArbolBinarioBusqueda {
 		}
 	}
 
-	private ArrayList<Integer> getLongestBranch(NodoArbol nodo) {
+	private ArrayList<Integer> getLongestBranch(NodoArbol nodo) {//TOREVIEW
 		ArrayList<Integer> longestBranch, leftBranch, rightBranch;
 		longestBranch = new ArrayList<>();	
 		leftBranch = new ArrayList<>();
@@ -263,6 +263,63 @@ public class ArbolBinarioBusqueda {
 		}
 		
 		return longestBranch;
+	}
+	
+	public int getMaxElem() {
+		if(this.raiz == null) {
+			return 0;
+		}
+		else {
+			int maxElem;
+			maxElem = getMaxElem(this.raiz);
+			return maxElem;
+		}
+	}
+	
+	private int getMaxElem(NodoArbol nodo) {
+		int maxElem = 0;
+		maxElem = nodo.getValor();
+		
+		if(nodo.getDerecha() != null) {
+			maxElem = getMaxElem(nodo.getDerecha());
+		}
+		
+		return maxElem;
+	}
+	
+	public ArrayList<Integer> getElemAtLevel(int level) {
+		if(raiz == null || level < 0) {
+			return new ArrayList<Integer>();
+		}
+		else if(level == 0) {
+			ArrayList<Integer> arr = new ArrayList<>(1);
+			arr.add(this.raiz.getValor());
+			return arr;
+		}
+		else {
+			ArrayList<Integer> elementsAtLevel = new ArrayList<>();
+			elementsAtLevel = getElemAtLevel(level, this.raiz);
+			return elementsAtLevel;
+		}
+	}
+
+	private ArrayList<Integer> getElemAtLevel(int level, NodoArbol nodo) {
+		ArrayList<Integer> elements = new ArrayList<>();
+		int contador = 0;
+		
+		while(contador < level) {
+			elements = getElemAtLevel(level, nodo.getIzquierda());
+			elements = getElemAtLevel(level, nodo.getDerecha());
+			contador++;
+		}
+			
+	
+		
+		if(contador == level) {
+			elements.add(nodo.getValor());
+		}
+		
+		return elements;
 	}
 
 	public boolean isEmpty() {
