@@ -38,7 +38,14 @@ public class Main {
 		
 		System.out.println("");
 		ArrayList<Integer> rama = arbol.getLongestBranch();
-		System.out.println(rama);
+		System.out.println("Rama mas larga del arbol: " + rama);
+	
+		System.out.println("");
+		ArrayList<Integer> frontera = arbol.getFrontera();
+		if(!frontera.isEmpty()) {
+			System.out.println("Frontera del arbol: " + frontera);
+		}
+		
 	}
 
 

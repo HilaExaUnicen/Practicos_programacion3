@@ -264,6 +264,31 @@ public class ArbolBinarioBusqueda {
 		
 		return longestBranch;
 	}
+	
+	public ArrayList<Integer> getFrontera(){
+		if(this.raiz == null) {
+			return new ArrayList<Integer>();
+		}
+		else {
+			ArrayList<Integer> frontera = new ArrayList<>();
+			frontera = getFrontera(this.raiz, frontera);
+			return frontera;
+		}
+	}
+	
+	private ArrayList<Integer> getFrontera(NodoArbol nodo, ArrayList<Integer> frontera){
+		if(nodo != null) {
+			if(nodo.getIzquierda() == null && nodo.getDerecha() == null) {
+				frontera.add(nodo.getValor());
+			}
+			else {
+				frontera = getFrontera(nodo.getIzquierda(), frontera);
+				frontera = getFrontera(nodo.getDerecha(), frontera);		
+			}
+		}
+		
+		return frontera;
+	}
 
 	public boolean isEmpty() {
 		return this.raiz == null;
