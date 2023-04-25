@@ -52,9 +52,9 @@ public class Main {
 			System.out.println("Frontera del arbol: " + frontera);
 		}
 		
-//		System.out.println("");
-//		ArrayList<Integer> elements = arbol.getElemAtLevel(1);
-//		System.out.println("Nivel: " + elements);
+		System.out.println("");
+		ArrayList<Integer> elements = arbol.getElemAtLevel(2);
+		System.out.println("Nivel: " + elements);
 	
 	
 

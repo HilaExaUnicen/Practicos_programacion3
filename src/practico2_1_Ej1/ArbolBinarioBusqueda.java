@@ -265,6 +265,31 @@ public class ArbolBinarioBusqueda {
 		return longestBranch;
 	}
 	
+	public ArrayList<Integer> getFrontera(){
+		if(this.raiz == null) {
+			return new ArrayList<Integer>();
+		}
+		else {
+			ArrayList<Integer> frontera = new ArrayList<>();
+			frontera = getFrontera(this.raiz, frontera);
+			return frontera;
+		}
+	}
+	
+	private ArrayList<Integer> getFrontera(NodoArbol nodo, ArrayList<Integer> frontera){
+		if(nodo != null) {
+			if(nodo.getIzquierda() == null && nodo.getDerecha() == null) {
+				frontera.add(nodo.getValor());
+			}
+			else {
+				frontera = getFrontera(nodo.getIzquierda(), frontera);
+				frontera = getFrontera(nodo.getDerecha(), frontera);		
+			}
+		}
+		
+		return frontera;
+	}
+	
 	public int getMaxElem() {
 		if(this.raiz == null) {
 			return 0;
@@ -298,54 +323,26 @@ public class ArbolBinarioBusqueda {
 		}
 		else {
 			ArrayList<Integer> elementsAtLevel = new ArrayList<>();
-			elementsAtLevel = getElemAtLevel(level, this.raiz);
+			elementsAtLevel = getElemAtLevel(0,level, this.raiz, elementsAtLevel);
 			return elementsAtLevel;
 		}
 	}
 
-	private ArrayList<Integer> getElemAtLevel(int level, NodoArbol nodo) {
-		ArrayList<Integer> elements = new ArrayList<>();
-		int contador = 0;
-		
-		while(contador < level) {
-			elements = getElemAtLevel(level, nodo.getIzquierda());
-			elements = getElemAtLevel(level, nodo.getDerecha());
-			contador++;
-		}
-			
-	
-		
-		if(contador == level) {
-			elements.add(nodo.getValor());
+	private ArrayList<Integer> getElemAtLevel(int currentLevel, int targetLevel, NodoArbol nodo, ArrayList<Integer> elements) {
+		if(nodo != null) {
+			if(currentLevel < targetLevel) {
+				elements = getElemAtLevel(currentLevel+1, targetLevel, nodo.getIzquierda(), elements);
+				elements = getElemAtLevel(currentLevel+1, targetLevel, nodo.getDerecha(), elements);
+			}
+			else {
+				elements.add(nodo.getValor());
+			}
 		}
 		
 		return elements;
 	}
 	
-	public ArrayList<Integer> getFrontera(){
-		if(this.raiz == null) {
-			return new ArrayList<Integer>();
-		}
-		else {
-			ArrayList<Integer> frontera = new ArrayList<>();
-			frontera = getFrontera(this.raiz, frontera);
-			return frontera;
-		}
-	}
-	
-	private ArrayList<Integer> getFrontera(NodoArbol nodo, ArrayList<Integer> frontera){
-		if(nodo != null) {
-			if(nodo.getIzquierda() == null && nodo.getDerecha() == null) {
-				frontera.add(nodo.getValor());
-			}
-			else {
-				frontera = getFrontera(nodo.getIzquierda(), frontera);
-				frontera = getFrontera(nodo.getDerecha(), frontera);		
-			}
-		}
-		
-		return frontera;
-	}
+
 
 	public boolean isEmpty() {
 		return this.raiz == null;
