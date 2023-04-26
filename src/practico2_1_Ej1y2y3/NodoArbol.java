@@ -1,4 +1,4 @@
-package practico2_1_Ej1;
+package practico2_1_Ej1y2y3;
 
 public class NodoArbol {
 	

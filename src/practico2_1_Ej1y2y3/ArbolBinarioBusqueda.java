@@ -1,4 +1,4 @@
-package practico2_1_Ej1;
+package practico2_1_Ej1y2y3;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -342,14 +342,76 @@ public class ArbolBinarioBusqueda {
 		return elements;
 	}
 	
-
-
 	public boolean isEmpty() {
 		return this.raiz == null;
 	}
 	
 	public int getRoot() {
 		return this.raiz.getValor();
+	}
+	
+	
+	//Ejercicio2
+	public int getSumaNodosInternos() {
+		if(raiz == null) {
+			return 0;
+		}
+		else {
+			int suma = 0;
+			suma = getSumaNodosInternos(this.raiz, suma);
+			return suma;
+		}
+	}
+	
+	private int getSumaNodosInternos(NodoArbol nodo, int suma) {
+		if(nodo != null) {
+			if(nodo.getIzquierda() != null && nodo.getDerecha() == null){
+				suma += nodo.getValor();
+				suma = getSumaNodosInternos(nodo.getIzquierda(), suma);
+			}
+			else if(nodo.getIzquierda() == null && nodo.getDerecha() != null) {
+				suma += nodo.getValor();
+				suma = getSumaNodosInternos(nodo.getDerecha(), suma);
+			}
+			else if(nodo.getIzquierda() != null && nodo.getDerecha() != null) {
+				suma += nodo.getValor();
+				suma = getSumaNodosInternos(nodo.getIzquierda(), suma);
+				suma = getSumaNodosInternos(nodo.getDerecha(), suma);
+			}
+		}
+		
+		return suma;
+	}
+	
+	//Ejercicio 3
+	public ArrayList<Integer> getNodosMayoresA(int k){
+		if(this.raiz == null) {
+			return new ArrayList<>();
+		}
+		else {
+			ArrayList<Integer> res = new ArrayList<>();
+			getNodosMayoresA(this.raiz, k, res);
+			return res;
+		}
+	}
+
+	private ArrayList<Integer> getNodosMayoresA(NodoArbol nodo, int k, ArrayList<Integer> res) {
+		if(nodo != null) {
+			if(nodo.getValor() == k) {
+				res = getNodosMayoresA(nodo.getDerecha(), k, res);
+			}
+			else if(nodo.getValor() > k) {
+				res.add(nodo.getValor());
+				if(nodo.getIzquierda() != null) {
+					res = getNodosMayoresA(nodo.getIzquierda(), k, res);
+				}
+				if(nodo.getDerecha() != null) {
+					res = getNodosMayoresA(nodo.getDerecha(), k, res);
+				}
+			}
+		}
+
+		return res;
 	}
 	
 	

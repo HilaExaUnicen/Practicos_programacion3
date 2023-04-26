@@ -1,4 +1,4 @@
-package practico2_1_Ej1;
+package practico2_1_Ej1y2y3;
 
 import java.util.ArrayList;
 
@@ -55,6 +55,16 @@ public class Main {
 		System.out.println("");
 		ArrayList<Integer> elements = arbol.getElemAtLevel(2);
 		System.out.println("Nivel: " + elements);
+		
+		System.out.println("");
+		int sumaNodosInternos = arbol.getSumaNodosInternos();
+		System.out.println("La suma de los nodos internos es de " + sumaNodosInternos);
+		
+		System.out.println("");
+		int k = 2;
+		ArrayList<Integer> valoresMayoresAk = arbol.getNodosMayoresA(k);
+		System.out.println("Nodos mayores a k = " + k + " " + valoresMayoresAk);
+		
 	
 	
 
