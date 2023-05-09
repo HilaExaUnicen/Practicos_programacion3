@@ -62,24 +62,40 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2) {
-		return null;
+		List<Arco<T>> arcosAsociados = this.mapa.get(verticeId1); 
+		for(int i = 0; i < arcosAsociados.size(); i++) {
+			if(arcosAsociados.get(i).getVerticeDestino() == verticeId2) {
+				Arco<T> arcoEncontrado = arcosAsociados.get(i);
+				return arcoEncontrado;
+			}
+		}
+		
+		return null;//Si no encuentra ninguno retorna null
 	}
 
 	@Override
 	public int cantidadVertices() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.mapa.size();
 	}
 
 	@Override
 	public int cantidadArcos() {
-		// TODO Auto-generated method stub
-		return 0;
+		int cantTotalArcos = 0;
+		for(Integer vertice: this.mapa.keySet()) {
+			int cantArcosVertice = this.mapa.get(vertice).size();
+			cantTotalArcos += cantArcosVertice;
+		}
+		
+		return cantTotalArcos;
 	}
+	
+//	private class IteradorGrafo implements Iterator<Map<Integer, List<Arco<T>>>>{
+//
+//		
+//	}
 
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
