@@ -89,20 +89,71 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return cantTotalArcos;
 	}
 	
-//	private class IteradorGrafo implements Iterator<Map<Integer, List<Arco<T>>>>{
-//
-//		
-//	}
-
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-		return null;
+		IteradorVertices itVertices = new IteradorVertices();
+		return itVertices;
+	}
+	
+	private class IteradorVertices implements Iterator<Integer>{
+		private LinkedList<Integer> vertices = new LinkedList<>(mapa.keySet());//Guarda las claves del mapa en una lista vinculada
+		private int puntero = 0;
+		
+		@Override
+		public boolean hasNext() {
+			if(vertices.get(puntero) != null) {
+				return true;
+			}
+			else if(vertices.isEmpty()) {
+				return false;
+			}
+			else {
+				return false;
+			}
+		}
+
+		@Override
+		public Integer next() {
+			Integer vertice = vertices.get(puntero);
+			puntero++;
+			return vertice;
+		}
 	}
 
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
-		// TODO Auto-generated method stub
-		return null;
+		IteradorAdyacentes itAdyacentes = new IteradorAdyacentes(verticeId);
+		return itAdyacentes;
+	}
+	
+	private class IteradorAdyacentes implements Iterator<Integer>{
+		private LinkedList<Arco<T>> verticesAdyacentes;
+		private int puntero;
+		
+		public IteradorAdyacentes(int verticeId) {
+			this.verticesAdyacentes = new LinkedList<Arco<T>>(mapa.get(verticeId));
+			this.puntero = 0;
+		}
+		
+		@Override
+		public boolean hasNext() {
+			if(verticesAdyacentes.get(puntero) != null) {
+				return true;
+			}
+			else if(verticesAdyacentes.isEmpty()) {
+				return false;
+			}
+			else {
+				return false;
+			}
+		}
+
+		@Override
+		public Integer next() {
+			Integer adyacente = verticesAdyacentes.get(puntero).getVerticeDestino();
+			puntero++;
+			return adyacente;
+		}
 	}
 
 	@Override
