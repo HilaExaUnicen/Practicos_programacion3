@@ -91,69 +91,20 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-		IteradorVertices itVertices = new IteradorVertices();
-		return itVertices;
-	}
-	
-	private class IteradorVertices implements Iterator<Integer>{
-		private LinkedList<Integer> vertices = new LinkedList<>(mapa.keySet());//Guarda las claves del mapa en una lista vinculada
-		private int puntero = 0;
-		
-		@Override
-		public boolean hasNext() {
-			if(vertices.get(puntero) != null) {
-				return true;
-			}
-			else if(vertices.isEmpty()) {
-				return false;
-			}
-			else {
-				return false;
-			}
-		}
-
-		@Override
-		public Integer next() {
-			Integer vertice = vertices.get(puntero);
-			puntero++;
-			return vertice;
-		}
+		LinkedList<Integer> vertices = new LinkedList<>(mapa.keySet());
+		return vertices.iterator();
 	}
 
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
-		IteradorAdyacentes itAdyacentes = new IteradorAdyacentes(verticeId);
-		return itAdyacentes;
-	}
-	
-	private class IteradorAdyacentes implements Iterator<Integer>{
-		private LinkedList<Arco<T>> verticesAdyacentes;
-		private int puntero;
+		LinkedList<Arco<T>> arcosVertice = new LinkedList<Arco<T>>(mapa.get(verticeId));
+		LinkedList<Integer> adyacentes = new LinkedList<>();
 		
-		public IteradorAdyacentes(int verticeId) {
-			this.verticesAdyacentes = new LinkedList<Arco<T>>(mapa.get(verticeId));
-			this.puntero = 0;
+		for(Arco<T> arco: arcosVertice) {
+			adyacentes.add(arco.getVerticeDestino());
 		}
 		
-		@Override
-		public boolean hasNext() {
-			if(verticesAdyacentes.get(puntero) != null) {
-				return true;
-			}
-			else if(verticesAdyacentes.isEmpty()) {
-				return false;
-			}
-			else {
-				return false;
-			}
-		}
-
-		@Override
-		public Integer next() {
-			Integer adyacente = verticesAdyacentes.get(puntero).getVerticeDestino();
-			puntero++;
-			return adyacente;
-		}
+		return adyacentes.iterator();
 	}
 
 	@Override
