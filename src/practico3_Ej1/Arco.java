@@ -1,4 +1,5 @@
 package practico3_Ej1;
+
 /*
  * La clase arco representa un arco del grafo. Contiene un vertice origen, un vertice destino y una etiqueta.
  * Nota: Para poder exponer los arcos fuera del grafo y que nadie los modifique se hizo esta clase inmutable
@@ -27,4 +28,24 @@ public class Arco<T> {
 	public T getEtiqueta() {
 		return etiqueta;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		try {
+			if (obj == null) {
+				return false;
+			}
+			Arco<?> other = (Arco<?>) obj;
+			return (verticeDestino == other.verticeDestino && verticeOrigen == other.verticeOrigen);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+
+	}
+	
+	
+	
+	
 }
