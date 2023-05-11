@@ -109,14 +109,14 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
-		IteradorArcos itArcosGrafo = new IteradorArcos();
-		return itArcosGrafo;
+		LinkedList<Arco<T>> arcos = this.getListaArcos();
+		return arcos.iterator();
 	}
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
-		IteradorArcos itArcosVertice = new IteradorArcos(verticeId);
-		return itArcosVertice;
+		LinkedList<Arco<T>> arcos = new LinkedList<>(mapa.get(verticeId));
+		return arcos.iterator();
 	}
 	
 	private LinkedList<Arco<T>> getListaArcos(){// Este metodo es privado porque si no se tendria acceso a los arcos desde afuera
@@ -126,40 +126,5 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		}
 		
 		return arcosGrafo;
-	}
-	
-	private class IteradorArcos implements Iterator<Arco<T>>{
-		private LinkedList<Arco<T>> arcos;
-		private int puntero;
-		
-		public IteradorArcos(Integer verticeId) {//Si se quieren los arcos de un vertice especifico
-			this.arcos = new LinkedList<>(mapa.get(verticeId));
-			this.puntero = 0;
-		}
-		
-		public IteradorArcos() {//Este constructor es cuando se quieren todos los arcos del grafo
-			this.puntero = 0;
-			this.arcos = getListaArcos();
-		}
-		
-		@Override
-		public boolean hasNext() {
-			if(arcos.isEmpty()) {
-				return false;
-			}
-			else if(arcos.get(puntero) != null) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-
-		@Override
-		public Arco<T> next() {
-			Arco<T> arco = this.arcos.get(puntero);
-			puntero++;
-			return arco;
-		}
 	}
 }
