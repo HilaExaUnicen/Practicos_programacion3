@@ -127,4 +127,57 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		
 		return arcosGrafo;
 	}
+	
+	
+	//Ejercicio 3
+	public boolean esCiclico() {
+		Map<Integer, String> colores = new HashMap<>();
+		Iterator<Integer> vertices = this.obtenerVertices();
+		while(vertices.hasNext()) {
+			colores.put(vertices.next(), "blanco");
+		}
+		
+		vertices = this.obtenerVertices();
+		
+		while(vertices.hasNext()) {
+			int vertice = vertices.next();
+			boolean esCiclico = this.esCiclico(vertice, colores);
+			if(esCiclico){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	private boolean esCiclico(int vertice, Map<Integer, String> colores) {
+		colores.put(vertice, "amarillo");
+		
+		Iterator<Integer> itAdyacentes = this.obtenerAdyacentes(vertice);
+		while(itAdyacentes.hasNext()) {
+			Integer vAdyacente = itAdyacentes.next();
+			if(colores.get(vAdyacente).equalsIgnoreCase("amarillo")) {
+				return true;
+			}
+			else if(colores.get(vAdyacente).equalsIgnoreCase("blanco")) {
+				esCiclico(vAdyacente, colores);
+			}
+		}
+		
+		colores.put(vertice, "negro");//Si ya no tiene adyacentes lo marcamos como negro
+		return false;
+	}
+	
+	//Ejercicio 4
+//	public List<Integer> getCamino(int verticeI, int verticeJ){
+//		if(this.contieneVertice(verticeI) && this.contieneVertice(verticeJ)){
+//			boolean encontrado = false;
+//			
+//			while(!encontrado) {
+//				
+//			}
+//		}
+//	
+//	}
+	
 }
