@@ -237,6 +237,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
     			caminoAux.add(vObjetivo);
     			return;
     		}
+       		else if(caminoAux.contains(adyacenteActual)){
+    			return;
+    		}
     		else {
     			buscarCamino(adyacenteActual, vObjetivo, caminoAux);
     		}

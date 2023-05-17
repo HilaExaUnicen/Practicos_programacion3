@@ -52,6 +52,7 @@ public class Main {
 		grafo2.agregarArco(5, 7, null);
 		grafo2.agregarArco(5, 1, null);
 		
+		System.out.println("Vertices que forman camino a vertice 5 de grafo 2: ");
 		System.out.println(grafo2.getVerticesQueFormanCaminoA(5));
 		
 		
