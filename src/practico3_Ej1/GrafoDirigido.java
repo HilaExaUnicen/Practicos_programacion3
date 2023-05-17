@@ -169,15 +169,41 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	}
 	
 	//Ejercicio 4
-//	public List<Integer> getCamino(int verticeI, int verticeJ){
-//		if(this.contieneVertice(verticeI) && this.contieneVertice(verticeJ)){
-//			boolean encontrado = false;
-//			
-//			while(!encontrado) {
-//				
-//			}
-//		}
-//	
-//	}
-	
+	public List<Integer> findLongestPath(int start, int end) {
+        if(this.contieneVertice(start) && this.contieneVertice(end)) {
+        	boolean[] visited = new boolean[this.cantidadVertices()+1];
+            Stack<Integer> stack = new Stack<>();
+            List<Integer> longestPath = new ArrayList<>();
+
+            // Realiza una búsqueda en profundidad modificada desde el vértice de inicio
+           findLongestPath(start, visited, stack);
+
+           while (!stack.isEmpty()) {
+    	        int vertex = stack.pop();
+    	        longestPath.add(vertex);
+    	
+    	        if (vertex == end) {
+    	        	return longestPath;
+    	        }
+            }
+        }
+        
+		return null;
+    }
+
+    private void findLongestPath(int vertex, boolean[] visited, Stack<Integer> stack) {
+        visited[vertex] = true;
+
+        Iterator<Integer> neighbors = this.obtenerAdyacentes(vertex);
+        while(neighbors.hasNext()) {
+            int neighbor = neighbors.next();
+        	if (!visited[neighbor]) {
+        		findLongestPath(neighbor, visited, stack);
+            }
+        }
+
+        stack.push(vertex);
+    }
+    
+    
 }
