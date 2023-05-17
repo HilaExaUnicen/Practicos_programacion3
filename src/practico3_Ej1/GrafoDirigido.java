@@ -205,5 +205,42 @@ public class GrafoDirigido<T> implements Grafo<T> {
         stack.push(vertex);
     }
     
+    public List<Integer> getVerticesQueFormanCaminoA(int vObjetivo){
+    	List<Integer> verticesParticipantes = new LinkedList<>();
+    	LinkedList<Integer> caminoAuxiliar = new LinkedList<>();
+    	
+    	Iterator<Integer> vertices = this.obtenerVertices();
+    	
+    	while(vertices.hasNext()) {
+    		int vertice = vertices.next();
+    		if(vertice != vObjetivo) {
+    			buscarCamino(vertice, vObjetivo, caminoAuxiliar);
+    		}
+    		
+    		if(caminoAuxiliar.contains(vObjetivo)) {
+    			verticesParticipantes.add(vertice);
+    		}
+    		
+    		caminoAuxiliar.clear();
+    	}
+    	
+    	return verticesParticipantes;
+    }
+    
+    private void buscarCamino(int vertice, int vObjetivo, LinkedList<Integer> caminoAux) {
+    	caminoAux.add(vertice);
+    	Iterator<Integer> listaAdyacencia = this.obtenerAdyacentes(vertice);
+    	
+    	while(listaAdyacencia.hasNext()) {
+    		int adyacenteActual = listaAdyacencia.next();
+    		if(adyacenteActual == vObjetivo) {
+    			caminoAux.add(vObjetivo);
+    			return;
+    		}
+    		else {
+    			buscarCamino(adyacenteActual, vObjetivo, caminoAux);
+    		}
+    	}
+    }
     
 }

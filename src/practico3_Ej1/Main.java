@@ -33,6 +33,31 @@ public class Main {
 		System.out.println(grafo.findLongestPath(1, 5));
 		
 		
+		GrafoDirigido<T> grafo2 = new GrafoDirigido<>();
+		grafo2.agregarVertice(1);
+		grafo2.agregarVertice(2);
+		grafo2.agregarVertice(3);
+		grafo2.agregarVertice(4);
+		grafo2.agregarVertice(5);
+		grafo2.agregarVertice(6);
+		grafo2.agregarVertice(7);
+		
+		grafo2.agregarArco(1, 2, null);
+		grafo2.agregarArco(1, 3, null);
+		grafo2.agregarArco(2, 5, null);
+		grafo2.agregarArco(3, 4, null);
+		grafo2.agregarArco(4, 5, null);
+		grafo2.agregarArco(4, 5, null);
+		grafo2.agregarArco(5, 6, null);
+		grafo2.agregarArco(5, 7, null);
+		grafo2.agregarArco(5, 1, null);
+		
+		System.out.println(grafo2.getVerticesQueFormanCaminoA(5));
+		
+		
+		
+		
+		
 
 	}
 
