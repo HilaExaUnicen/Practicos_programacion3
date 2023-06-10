@@ -56,6 +56,41 @@ public class Main {
 		System.out.println(grafo2.getVerticesQueFormanCaminoA(5));
 		
 		
+		MapaCiudad<T> ciudad = new MapaCiudad<>();
+		ciudad.addEsquina(1);
+		ciudad.addEsquina(2);
+		ciudad.addEsquina(3);
+		ciudad.addEsquina(4);
+		ciudad.addEsquina(5);
+		ciudad.addEsquina(6);
+		ciudad.addEsquina(7);
+		ciudad.addEsquina(8);
+		ciudad.addEsquina(9);
+		ciudad.addEsquina(10);
+		ciudad.addEsquina(11);
+		ciudad.addEsquina(12);
+		
+		ciudad.addCalle(1, 4);
+		ciudad.addCalle(1, 2);
+		ciudad.addCalle(2, 5);
+		ciudad.addCalle(2, 3);
+		ciudad.addCalle(3, 6);
+		ciudad.addCalle(6, 9);
+		ciudad.addCalle(9, 10);
+		ciudad.addCalle(5, 8);
+		ciudad.addCalle(8, 11);
+		ciudad.addCalle(4, 7);
+		ciudad.addCalle(7, 12);
+		ciudad.addCalle(11,12);
+		ciudad.addCalle(4, 5);
+		ciudad.addCalle(5, 6);
+		ciudad.addCalle(7, 8);
+		ciudad.addCalle(8, 9);
+		ciudad.addCalle(11, 10);
+		
+		System.out.println(ciudad.getCaminoMasCorto(1, 10));
+		
+		
 		
 		
 		
