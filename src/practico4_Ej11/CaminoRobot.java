@@ -7,22 +7,22 @@ public class CaminoRobot {
 	public static void main(String[] args) {
 
 		
-		CaminoRobot r = new CaminoRobot(2,2);
-		r.llenarMat();
-		r.imprimirTablero();
-		//ArrayList<Integer> camino = r.getCaminoMasCorto();
+		CaminoRobot r = new CaminoRobot(2,2,3);
+		ArrayList<Integer> camino = r.getCaminoMasCorto();
+		System.out.println(camino);
 		
 		
 	}
 	
-	private int [][] mat = new int [3][3];
+	private int [][] mat;
 	private int n; 
 	private int posFilaCarga;
 	private int posColumnaCarga;
 
-	public CaminoRobot(int posFilaCarga, int posColumnaCarga) {
+	public CaminoRobot(int posFilaCarga, int posColumnaCarga, int n) {
 		this.posFilaCarga = posFilaCarga;
 		this.posColumnaCarga = posColumnaCarga;
+		this.n = n;
 	}
 
 	public ArrayList<Integer> getCaminoMasCorto() {//Se deberia poder ingresar una pos inicial por parametro.
@@ -74,14 +74,11 @@ public class CaminoRobot {
     }
     
     private void llenarMat() {
-    	mat[0][0] = 0;
-    	mat[0][1] = 0;
-    	mat[0][2] = 1;
-    	mat[1][0] = 1;
-    	mat[1][1] = 0;
-    	mat[1][2] = 1;
-    	mat[2][0] = 0;
-    	mat[2][1] = 0;
+        mat = new int[][]{
+            {0, 0, 1},
+            {1, 0, 0},
+            {0, 0, 0},
+    };
     }
     
     
